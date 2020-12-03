@@ -62,27 +62,16 @@ public class Priority {
 
 			if (Character.isDigit(tmp)) { // 숫자라면
 			
-				nextCheck = data.charAt(i+1);
+				preCheck = data.charAt(i-1);
 				
-				
-				if(numCheck(nextCheck) == false) { // tmp다음이 연산자라면
+				if(numCheck(preCheck) == false) { // tmp 이전이 연산자라면
 					stack1.push(Double.valueOf(Character.toString(tmp)));
-					
-				}else { // 두자리 이상
-					preCheck = data.charAt(i-1);
-					
-					if(numCheck(preCheck) == false) {
-						stack1.push(Double.valueOf(Character.toString(tmp)));
-					}else if(numCheck(preCheck) == true){
-						dataNum = stack1.pop();
-						dataNum = (dataNum * 10) + Double.valueOf(Character.toString(tmp));
+				
+				}else { //숫자라면
+					dataNum = stack1.pop();
+					dataNum = (dataNum * 10) + Double.valueOf(Character.toString(tmp));
 
-						stack1.push(dataNum);
-					}
-					
-					
-					
-					
+					stack1.push(dataNum);
 				}
 				
 
